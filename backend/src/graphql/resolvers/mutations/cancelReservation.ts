@@ -1,7 +1,8 @@
 import { Reservation } from '@/models/reservation';
 import logger from '@/utils/logger';
+import { MutationCancelReservationArgs } from '@/graphql/types/mutation';
 
-export const cancelReservation = async (_: any, args: { id: string }, context: any) => {
+export const cancelReservation = async (_: any, args: MutationCancelReservationArgs, context: any) => {
     try {
         const reservation = await Reservation.findByIdAndUpdate(
             args.id,

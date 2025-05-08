@@ -1,7 +1,8 @@
 import { Reservation } from '@/models/reservation';
 import logger from '@/utils/logger';
+import { ReservationInput } from '@/graphql/types/models/reservation';
 
-export const createReservation = async (_: any, args: { input: any }, context: any) => {
+export const createReservation = async (_: any, args: { input: ReservationInput }, context: any) => {
     const { guestName, phone, email, arrivalTime, tableSize } = args.input;
     const reservation = new Reservation({
         guestName,
@@ -9,7 +10,7 @@ export const createReservation = async (_: any, args: { input: any }, context: a
         arrivalTime: new Date(arrivalTime),
         tableSize,
         status: 'Requested',
-        createdBy: context.currentUser.userId,
+        createdBy: context.user._id,
     });
     try {
         await reservation.save();

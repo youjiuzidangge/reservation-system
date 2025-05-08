@@ -104,8 +104,12 @@ export type User = {
   role: Scalars['String']['output'];
 };
 
-export type WithIndex<TObject> = TObject & Record<string, any>;
-export type ResolversObject<TObject> = WithIndex<TObject>;
+export type AdditionalEntityFields = {
+  path?: InputMaybe<Scalars['String']['input']>;
+  type?: InputMaybe<Scalars['String']['input']>;
+};
+
+
 
 export type ResolverTypeWrapper<T> = Promise<T> | T;
 
@@ -175,61 +179,110 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 
 /** Mapping between all available schema types and the resolvers types */
-export type ResolversTypes = ResolversObject<{
+export type ResolversTypes = {
   AuthPayload: ResolverTypeWrapper<AuthPayload>;
-  Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
+  String: ResolverTypeWrapper<Scalars['String']['output']>;
   GuestContact: ResolverTypeWrapper<GuestContact>;
-  ID: ResolverTypeWrapper<Scalars['ID']['output']>;
-  Int: ResolverTypeWrapper<Scalars['Int']['output']>;
   Mutation: ResolverTypeWrapper<{}>;
+  ID: ResolverTypeWrapper<Scalars['ID']['output']>;
   Query: ResolverTypeWrapper<{}>;
   Reservation: ResolverTypeWrapper<Reservation>;
+  Int: ResolverTypeWrapper<Scalars['Int']['output']>;
   ReservationInput: ReservationInput;
-  String: ResolverTypeWrapper<Scalars['String']['output']>;
   UpdateReservationInput: UpdateReservationInput;
   User: ResolverTypeWrapper<User>;
-}>;
+  AdditionalEntityFields: AdditionalEntityFields;
+  Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
+};
 
 /** Mapping between all available schema types and the resolvers parents */
-export type ResolversParentTypes = ResolversObject<{
+export type ResolversParentTypes = {
   AuthPayload: AuthPayload;
-  Boolean: Scalars['Boolean']['output'];
+  String: Scalars['String']['output'];
   GuestContact: GuestContact;
-  ID: Scalars['ID']['output'];
-  Int: Scalars['Int']['output'];
   Mutation: {};
+  ID: Scalars['ID']['output'];
   Query: {};
   Reservation: Reservation;
+  Int: Scalars['Int']['output'];
   ReservationInput: ReservationInput;
-  String: Scalars['String']['output'];
   UpdateReservationInput: UpdateReservationInput;
   User: User;
-}>;
+  AdditionalEntityFields: AdditionalEntityFields;
+  Boolean: Scalars['Boolean']['output'];
+};
 
-export type AuthPayloadResolvers<ContextType = any, ParentType extends ResolversParentTypes['AuthPayload'] = ResolversParentTypes['AuthPayload']> = ResolversObject<{
+export type UnionDirectiveArgs = {
+  discriminatorField?: Maybe<Scalars['String']['input']>;
+  additionalFields?: Maybe<Array<Maybe<AdditionalEntityFields>>>;
+};
+
+export type UnionDirectiveResolver<Result, Parent, ContextType = any, Args = UnionDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+
+export type AbstractEntityDirectiveArgs = {
+  discriminatorField: Scalars['String']['input'];
+  additionalFields?: Maybe<Array<Maybe<AdditionalEntityFields>>>;
+};
+
+export type AbstractEntityDirectiveResolver<Result, Parent, ContextType = any, Args = AbstractEntityDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+
+export type EntityDirectiveArgs = {
+  embedded?: Maybe<Scalars['Boolean']['input']>;
+  additionalFields?: Maybe<Array<Maybe<AdditionalEntityFields>>>;
+};
+
+export type EntityDirectiveResolver<Result, Parent, ContextType = any, Args = EntityDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+
+export type ColumnDirectiveArgs = {
+  overrideType?: Maybe<Scalars['String']['input']>;
+};
+
+export type ColumnDirectiveResolver<Result, Parent, ContextType = any, Args = ColumnDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+
+export type IdDirectiveArgs = { };
+
+export type IdDirectiveResolver<Result, Parent, ContextType = any, Args = IdDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+
+export type LinkDirectiveArgs = {
+  overrideType?: Maybe<Scalars['String']['input']>;
+};
+
+export type LinkDirectiveResolver<Result, Parent, ContextType = any, Args = LinkDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+
+export type EmbeddedDirectiveArgs = { };
+
+export type EmbeddedDirectiveResolver<Result, Parent, ContextType = any, Args = EmbeddedDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+
+export type MapDirectiveArgs = {
+  path: Scalars['String']['input'];
+};
+
+export type MapDirectiveResolver<Result, Parent, ContextType = any, Args = MapDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+
+export type AuthPayloadResolvers<ContextType = any, ParentType extends ResolversParentTypes['AuthPayload'] = ResolversParentTypes['AuthPayload']> = {
   token?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   user?: Resolver<ResolversTypes['User'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-}>;
+};
 
-export type GuestContactResolvers<ContextType = any, ParentType extends ResolversParentTypes['GuestContact'] = ResolversParentTypes['GuestContact']> = ResolversObject<{
+export type GuestContactResolvers<ContextType = any, ParentType extends ResolversParentTypes['GuestContact'] = ResolversParentTypes['GuestContact']> = {
   email?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   phone?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-}>;
+};
 
-export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = ResolversObject<{
+export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   cancelReservation?: Resolver<ResolversTypes['Reservation'], ParentType, ContextType, RequireFields<MutationCancelReservationArgs, 'id'>>;
   createReservation?: Resolver<ResolversTypes['Reservation'], ParentType, ContextType, RequireFields<MutationCreateReservationArgs, 'input'>>;
   updateReservation?: Resolver<ResolversTypes['Reservation'], ParentType, ContextType, RequireFields<MutationUpdateReservationArgs, 'input'>>;
-}>;
+};
 
-export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
+export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   reservation?: Resolver<Maybe<ResolversTypes['Reservation']>, ParentType, ContextType, RequireFields<QueryReservationArgs, 'id'>>;
   reservations?: Resolver<Array<ResolversTypes['Reservation']>, ParentType, ContextType, Partial<QueryReservationsArgs>>;
-}>;
+};
 
-export type ReservationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Reservation'] = ResolversParentTypes['Reservation']> = ResolversObject<{
+export type ReservationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Reservation'] = ResolversParentTypes['Reservation']> = {
   arrivalTime?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   createdBy?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   guestContact?: Resolver<ResolversTypes['GuestContact'], ParentType, ContextType>;
@@ -238,22 +291,34 @@ export type ReservationResolvers<ContextType = any, ParentType extends Resolvers
   status?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   tableSize?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-}>;
+};
 
-export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = ResolversObject<{
+export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
   email?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   role?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-}>;
+};
 
-export type Resolvers<ContextType = any> = ResolversObject<{
+export type Resolvers<ContextType = any> = {
   AuthPayload?: AuthPayloadResolvers<ContextType>;
   GuestContact?: GuestContactResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   Reservation?: ReservationResolvers<ContextType>;
   User?: UserResolvers<ContextType>;
-}>;
+};
 
+export type DirectiveResolvers<ContextType = any> = {
+  union?: UnionDirectiveResolver<any, any, ContextType>;
+  abstractEntity?: AbstractEntityDirectiveResolver<any, any, ContextType>;
+  entity?: EntityDirectiveResolver<any, any, ContextType>;
+  column?: ColumnDirectiveResolver<any, any, ContextType>;
+  id?: IdDirectiveResolver<any, any, ContextType>;
+  link?: LinkDirectiveResolver<any, any, ContextType>;
+  embedded?: EmbeddedDirectiveResolver<any, any, ContextType>;
+  map?: MapDirectiveResolver<any, any, ContextType>;
+};
+
+import { ObjectId } from 'mongodb';

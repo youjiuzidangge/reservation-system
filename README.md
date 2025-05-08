@@ -1,5 +1,8 @@
 # Hilton Reservation System
 
+## 代办
+- 统一的错误处理
+
 ## 项目背景
 Hilton Restaurants 希望创建一个在线餐桌预订系统，允许客人预订餐桌。客人将使用个人联系信息进行预订，餐厅员工将浏览和管理这些预订。
 

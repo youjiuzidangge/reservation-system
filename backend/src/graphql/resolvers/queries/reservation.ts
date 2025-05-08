@@ -1,7 +1,8 @@
 import { Reservation } from '@/models/reservation';
 import logger from '@/utils/logger';
+import { QueryReservationArgs } from '@/graphql/types/query';
 
-export const reservation = async (_: any, args: { id: string }, context: any) => {
+export const reservation = async (_: any, args: QueryReservationArgs, context: any) => {
     try {
         return await Reservation.findById(args.id);
     } catch (error) {

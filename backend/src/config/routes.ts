@@ -1,5 +1,6 @@
 import Koa from 'koa';
 import Router from '@koa/router';
+import authRouter from '@/routes/auth';
 import { auth } from '@/middlewares';
 
 export function configureRoutes(app: Koa) {
@@ -10,9 +11,10 @@ export function configureRoutes(app: Koa) {
     ctx.body = { status: 'ok' };
   });
 
-  // 添加认证路由
-  router.use('/auth', auth());
+  app.use(authRouter.routes())
+  app.use(authRouter.allowedMethods());
 
+  app.use(auth());
   app.use(router.routes());
   app.use(router.allowedMethods());
 }

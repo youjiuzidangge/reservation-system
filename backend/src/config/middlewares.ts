@@ -9,5 +9,6 @@ export function configureMiddlewares(app: Koa) {
   app.use(bodyParser());
   app.use(errorHandler);
   app.use(requestLogger);
+  // todo: login/signup no validate
   app.use(auth());
 }

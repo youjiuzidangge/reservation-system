@@ -4,13 +4,13 @@ import {User} from '@/models/user';
 
 export default function auth(role?: 'guest' | 'employee') {
   return async (ctx: Context, next: Next) => {
+    const token = ctx.headers.authorization?.split(' ')[1];
     // 如果是开发环境，跳过认证
-    if (process.env.NODE_ENV === 'development') {
+    if (!token && process.env.NODE_ENV === 'development') {
       ctx.state.user = await User.findOne({email: 'john@example.com'});
       return await next();
     }
 
-    const token = ctx.headers.authorization?.split(' ')[1];
     if (!token) {
       ctx.throw(401, 'Authentication required');
     }

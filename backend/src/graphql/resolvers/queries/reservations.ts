@@ -1,7 +1,8 @@
 import { Reservation } from '@/models/reservation';
 import logger from '@/utils/logger';
+import { QueryReservationsArgs } from '@/graphql/types/query';
 
-export const reservations = async (_: any, args: { date?: string; status?: string }, context: any) => {
+export const reservations = async (_: any, args: QueryReservationsArgs, context: any) => {
     const query: any = {};
     if (args.date) {
         const start = new Date(args.date);

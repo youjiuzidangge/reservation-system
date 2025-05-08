@@ -15,7 +15,7 @@ export async function startApolloServer(app: Koa, httpServer: http.Server) {
   const server = new ApolloServer({
     typeDefs,
     resolvers,
-    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })]
+    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
   });
 
   await server.start();

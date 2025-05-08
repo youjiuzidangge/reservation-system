@@ -1,0 +1,32 @@
+.table {
+    @apply w-full border-collapse;
+}
+
+.table th,
+.table td {
+    @apply border p-2;
+}
+
+.table th {
+    @apply bg-gray-200;
+}
+
+.button {
+    @apply px-4 py-2 rounded;
+}
+
+.button-primary {
+    @apply button bg-blue-500 text-white hover:bg-blue-600;
+}
+
+.button-danger {
+    @apply button bg-red-500 text-white hover:bg-red-600;
+}
+
+.input {
+    @apply border p-2 rounded;
+}
+
+.select {
+    @apply border p-2 rounded;
+}

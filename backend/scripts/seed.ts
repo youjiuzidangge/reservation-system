@@ -1,6 +1,7 @@
 import { connectDB, closeDB } from '@/config/db';
 import { Reservation } from '../src/models/reservation';
 import { User } from '../src/models/user';
+import {hashPassword} from "../src/utils/auth";
 
 const seedData = async () => {
   try {
@@ -17,14 +18,14 @@ const seedData = async () => {
       {
         email: 'john@example.com',
         phone: '1234567890',
-        password: 'hashed_password_1', // 实际使用中应使用hashPassword函数
+        password: await hashPassword("111111"), // 实际使用中应使用hashPassword函数
         name: 'John Doe',
         role: 'guest'
       },
       {
         email: 'employee@example.com',
         phone: '11111111',
-        password: 'hashed_password_2', // 实际使用中应使用hashPassword函数
+        password: await hashPassword("111111"), // 实际使用中应使用hashPassword函数
         name: 'Employee User',
         role: 'employee'
       }
