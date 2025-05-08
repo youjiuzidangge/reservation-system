@@ -1,5 +1,7 @@
 import { gql } from '@apollo/client';
 
+// @todo
+//      进一步拆分，引入 codegen
 export const CREATE_RESERVATION = gql`
     mutation CreateReservation($input: ReservationInput!) {
         createReservation(input: $input) {

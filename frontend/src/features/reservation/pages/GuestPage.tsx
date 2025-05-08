@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { GuestReservationForm } from '@/features/reservation/components';
-import { getReservations } from '@/services/api/reservation';
+import { getReservations, updateReservation, cancelReservation } from '@/services/api/reservation';
 import { ReservationTable } from '../components/ReservationTable';
 import { Reservation } from '@/types';
 import { useAuth } from '@/hooks/useAuth';
@@ -24,6 +24,24 @@ const GuestPage = () => {
     fetchReservations();
   }, []);
 
+  const handleStatusUpdate = async (id: string, status: string) => {
+    try {
+      await updateReservation({ id, status }, token);
+      fetchReservations();
+    } catch (error) {
+      console.error('Failed to update reservation:', error);
+    }
+  };
+
+  const handleCancel = async (id: string) => {
+    try {
+      await cancelReservation(id, token);
+      fetchReservations();
+    } catch (error) {
+      console.error('Failed to cancel reservation:', error);
+    }
+  };
+
   return (
     <div className="max-w-4xl mx-auto p-4">
       <div className="flex justify-between items-center mb-4">
@@ -42,8 +60,8 @@ const GuestPage = () => {
       <h3 className="text-xl font-bold mt-8 mb-4">Your reservation</h3>
       <ReservationTable 
         reservations={reservations} 
-        onStatusUpdate={(id, status) => console.log('Status Update:', id, status)}
-        onCancel={(id) => console.log('Cancel:', id)} 
+        onStatusUpdate={handleStatusUpdate}
+        onCancel={handleCancel} 
       />
     </div>
   );

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { User } from '@/types/reservation.d.ts';
+import { User } from '@/types/reservation';
 
 const api = axios.create({
     baseURL: import.meta.env.VITE_API_URL,
