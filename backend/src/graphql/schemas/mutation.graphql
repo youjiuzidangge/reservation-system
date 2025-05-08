@@ -1,0 +1,5 @@
+type Mutation {
+  createReservation(input: ReservationInput!): Reservation!
+  updateReservation(input: UpdateReservationInput!): Reservation!
+  cancelReservation(id: ID!): Reservation!
+}

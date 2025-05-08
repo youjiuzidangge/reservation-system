@@ -1,0 +1,4 @@
+type Query {
+  reservations(date: String, status: String): [Reservation!]!
+  reservation(id: ID!): Reservation
+}

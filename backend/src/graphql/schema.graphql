@@ -1,0 +1,55 @@
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  role: String!
+}
+
+type Reservation {
+  id: ID!
+  guestName: String!
+  guestContact: GuestContact!
+  arrivalTime: String!
+  tableSize: Int!
+  status: String!
+  createdBy: String!
+}
+
+type GuestContact {
+  phone: String!
+  email: String!
+}
+
+input ReservationInput {
+  guestName: String!
+  phone: String!
+  email: String!
+  arrivalTime: String!
+  tableSize: Int!
+}
+
+input UpdateReservationInput {
+  id: ID!
+  guestName: String
+  phone: String
+  email: String
+  arrivalTime: String
+  tableSize: Int
+  status: String
+}
+
+type AuthPayload {
+  token: String!
+  user: User!
+}
+
+type Query {
+  reservations(date: String, status: String): [Reservation!]!
+  reservation(id: ID!): Reservation
+}
+
+type Mutation {
+  createReservation(input: ReservationInput!): Reservation!
+  updateReservation(input: UpdateReservationInput!): Reservation!
+  cancelReservation(id: ID!): Reservation!
+}

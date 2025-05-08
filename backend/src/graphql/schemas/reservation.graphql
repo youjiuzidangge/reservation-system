@@ -1,0 +1,32 @@
+type Reservation {
+  id: ID!
+  guestName: String!
+  guestContact: GuestContact!
+  arrivalTime: String!
+  tableSize: Int!
+  status: String!
+  createdBy: String!
+}
+
+type GuestContact {
+  phone: String!
+  email: String!
+}
+
+input ReservationInput {
+  guestName: String!
+  phone: String!
+  email: String!
+  arrivalTime: String!
+  tableSize: Int!
+}
+
+input UpdateReservationInput {
+  id: ID!
+  guestName: String
+  phone: String
+  email: String
+  arrivalTime: String
+  tableSize: Int
+  status: String
+}
