@@ -2,13 +2,10 @@ import Koa from 'koa';
 import cors from '@koa/cors';
 import bodyParser from 'koa-bodyparser';
 import { errorHandler, requestLogger } from '@/middlewares';
-import { auth } from '@/middlewares';
 
 export function configureMiddlewares(app: Koa) {
   app.use(cors());
   app.use(bodyParser());
   app.use(errorHandler);
   app.use(requestLogger);
-  // todo: login/signup no validate
-  app.use(auth());
 }

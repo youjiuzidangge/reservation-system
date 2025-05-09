@@ -15,6 +15,10 @@ export default defineConfig(({ mode }) => {
         '@': path.resolve(__dirname, './src'),
       },
     },
+    preview: {
+      port: Number(env.VITE_PORT) || 3000,
+      host: true
+    },
     server: {
       port: Number(env.VITE_PORT) || 3000,
       proxy: {

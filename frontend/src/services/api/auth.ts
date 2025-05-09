@@ -5,8 +5,8 @@ const api = axios.create({
     baseURL: import.meta.env.VITE_API_URL,
 });
 
-export const signup = async (email: string, name: string, password: string, role: string) => {
-    const response = await api.post('/auth/signup', { email, name, password, role });
+export const signup = async (email: string, name: string, password: string, phone: string, role: string) => {
+    const response = await api.post('/auth/signup', { email, name, password, phone, role });
     return response.data as { token: string; user: User };
 };
 

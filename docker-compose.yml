@@ -1,3 +1,5 @@
+version: "3.9"
+
 services:
   frontend:
     build:
@@ -8,12 +10,9 @@ services:
     environment:
       - VITE_PORT=3000
       - VITE_API_URL=http://backend:4000
-      - NODE_ENV=${NODE_ENV}
+      - NODE_ENV=production
     depends_on:
       - backend
-    volumes:
-      - ./frontend:/app
-      - frontend_node_modules:/app/node_modules
 
   backend:
     build:
@@ -22,17 +21,14 @@ services:
     ports:
       - "4000:4000"
     environment:
+      - NODE_ENV=production
       - MONGO_USER=${MONGO_USER}
       - MONGO_PASSWORD=${MONGO_PASSWORD}
       - MONGO_DB=${MONGO_DB}
-      - NODE_ENV=${NODE_ENV}
       - MONGO_HOST=mongo
       - MONGO_PORT=27017
     depends_on:
       - mongo
-    volumes:
-      - ./backend:/app
-      - backend_node_modules:/app/node_modules
 
   mongo:
     container_name: mongo
@@ -48,5 +44,3 @@ services:
 
 volumes:
   mongo-data:
-  frontend_node_modules:
-  backend_node_modules:

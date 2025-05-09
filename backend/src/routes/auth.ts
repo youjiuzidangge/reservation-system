@@ -10,7 +10,8 @@ const signupSchema = Joi.object<SignupBody>({
     email: Joi.string().email().required(),
     password: Joi.string().min(6).required(),
     name: Joi.string().required(),
-    role: Joi.string().valid('guest', 'employee').required()
+    role: Joi.string().valid('guest', 'employee').required(),
+    phone: Joi.string().required(),
 });
 
 const loginSchema = Joi.object<LoginBody>({

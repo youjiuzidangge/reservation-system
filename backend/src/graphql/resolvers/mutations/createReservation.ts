@@ -4,6 +4,8 @@ import { ReservationInput } from '@/graphql/types/models/reservation';
 
 export const createReservation = async (_: any, args: { input: ReservationInput }, context: any) => {
     const { guestName, phone, email, arrivalTime, tableSize } = args.input;
+
+    console.log('context.user:', context.user);
     const reservation = new Reservation({
         guestName,
         guestContact: { phone, email },

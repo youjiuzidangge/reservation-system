@@ -16,7 +16,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
             const { token, user } = await login(email, password);
             onLogin(token, { id: user.id, role: user.role });
         } catch (err: any) {
-            setError(err.message || 'Login failed');
+            setError('Login failed');
         }
     };
 

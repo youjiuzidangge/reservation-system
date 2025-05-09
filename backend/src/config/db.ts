@@ -6,8 +6,6 @@ import {mongoUri} from "@/utils/constants";
 //    全部换成常量
 export const connectDB = async () => {
   try {
-    console.log("11111111111111111111111111111111");
-    console.log(mongoUri);
     await mongoose.connect(mongoUri, {
       useNewUrlParser: true,
       useUnifiedTopology: true,

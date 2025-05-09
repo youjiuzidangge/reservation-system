@@ -10,9 +10,11 @@ export const reservations = async (_: any, args: QueryReservationsArgs, context:
         end.setDate(end.getDate() + 1);
         query.arrivalTime = { $gte: start, $lt: end };
     }
+
     if (args.status) {
         query.status = args.status;
     }
+
     try {
         return await Reservation.find(query);
     } catch (error) {

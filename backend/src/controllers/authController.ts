@@ -5,7 +5,7 @@ import logger from '@/utils/logger';
 import { LoginBody, SignupBody } from '@/types';
 
 export const signup = async (ctx: Context) => {
-    const { email, name, password, role } = ctx.request.body as SignupBody;
+    const { email, name, password, role, phone } = ctx.request.body as SignupBody;
 
     try {
         const existingUser = await User.findOne({ email });
@@ -15,7 +15,7 @@ export const signup = async (ctx: Context) => {
         }
 
         const hashedPassword = await hashPassword(password);
-        const user = new User({ email, name, password: hashedPassword, role });
+        const user = new User({ email, name, password: hashedPassword, role, phone });
         await user.save();
 
         const token = generateToken(user.id.toString(), user.role);
