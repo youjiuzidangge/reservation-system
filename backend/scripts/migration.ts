@@ -1,19 +1,11 @@
 import mongoose from 'mongoose';
-import { Reservation } from '../src/models/reservation';
-import { User } from '../src/models/user';
+import { Reservation } from '@/models/reservation';
+import { User } from '@/models/user';
+import { connectDB } from "@/config/db";
 
 const checkAndCreateDatabase = async () => {
   try {
-    // 从环境变量读取数据库URI
-    const mongoUri = process.env.MONGO_URI || 'mongodb://localhost:27017/hilton';
-    const dbName = process.env.MONGO_DB_NAME || 'hilton';
-
-    // 确保数据库连接已建立
-    if (!mongoose.connection.readyState) {
-      await mongoose.connect(mongoUri, {
-        dbName: dbName
-      });
-    }
+    await connectDB();
 
     // 检查db是否存在
     if (!mongoose.connection.db) {

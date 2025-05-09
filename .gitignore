@@ -2,3 +2,5 @@
 Hilton.China.Quiz.2025.03.25.txt
 node_modules
 *.log
+dist
+.env

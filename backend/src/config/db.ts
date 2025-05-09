@@ -1,20 +1,17 @@
 import mongoose from 'mongoose';
+import * as process from "node:process";
+import {mongoUri} from "@/utils/constants";
 
 // @todo
 //    全部换成常量
 export const connectDB = async () => {
   try {
-    console.log('process.env.MONGO_USER:', process.env.MONGO_USER);
-    console.log('process.env.MONGO_PASSWORD:', process.env.MONGO_PASSWORD);
-    console.log('process.env.MONGO_HOST:', process.env.MONGO_HOST);
-    console.log('process.env.MONGO_PORT:', process.env.MONGO_PORT);
-    console.log('process.env.MONGO_DB:', process.env.MONGO_DB);
-    await mongoose.connect('mongodb://127.0.0.1:27017/hilton', {
-      user: process.env.MONGO_USER,         // 如果设置了认证
-      pass: process.env.MONGO_PASSWORD,     // 如果设置了认证
+    console.log("11111111111111111111111111111111");
+    console.log(mongoUri);
+    await mongoose.connect(mongoUri, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-    } as any); // 如果 TS 报错可以临时用 any
+    } as any);
     console.log('MongoDB connected');
   } catch (err) {
     console.error('MongoDB connection failed:', err);
