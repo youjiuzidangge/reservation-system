@@ -1,4 +1,6 @@
-# Hilton Reservation System
+# Reservation System
+
+For English, [README-EN.md](./README-EN.md)
 
 # 项目介绍
 
@@ -60,7 +62,7 @@ http://localhost:4000/graphql
 
 ## 📂 项目结构
 ```text
-hilton-reservation-system/
+reservation-system/
 ├── backend/                # 后端服务
 │   ├── scripts/            #   脚本文件，init db，seeds
 │   ├── src/                #   源代码目录

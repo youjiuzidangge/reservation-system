@@ -1,4 +1,6 @@
-# Hilton Reservation System
+# Reservation System
+
+For Chinese, [README.md](./README.md)
 
 ## Project Introduction
 
@@ -55,7 +57,7 @@ http://localhost:4000/graphql
 
 ## Project Structure
 ```text
-hilton-reservation-system/
+reservation-system/
 ├── backend/                # Backend Service
 │   ├── scripts/            #   Script files, init db, seeds
 │   ├── src/                #   Source code directory
