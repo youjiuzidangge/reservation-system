@@ -21,6 +21,7 @@ export default defineConfig(({ mode }) => {
     },
     server: {
       port: Number(env.VITE_PORT) || 3000,
+      host: true,
       proxy: {
         '/graphql': {
           target: env.VITE_API_URL,

@@ -18,9 +18,18 @@ FROM node:18-alpine
 
 WORKDIR /app
 
+COPY package*.json ./
+ENV NODE_ENV=production
+RUN npm install --omit=dev
+
+RUN npm install --no-save \
+    ts-node \
+    tsconfig-paths \
+    dotenv \
+    @graphql-tools/graphql-file-loader\
+    @graphql-tools/load
+
 # 拷贝构建产物与依赖
-COPY --from=builder /app/package*.json ./
-COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/scripts ./scripts
 COPY --from=builder /app/tsconfig*.json ./
