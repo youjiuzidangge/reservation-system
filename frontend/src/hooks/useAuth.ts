@@ -11,7 +11,7 @@ export const useAuth = () => {
             localStorage.removeItem('user');
             navigate('/login');
         } catch (error) {
-            console.error('登出失败:', error);
+            console.error('Logout failed:', error);
         }
     };
 

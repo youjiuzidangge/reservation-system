@@ -4,7 +4,7 @@ export const useError = () => {
     const [error, setError] = useState<string>('');
 
     const handleError = useCallback((err: any) => {
-        const errorMessage = err?.message || '操作失败';
+        const errorMessage = err?.message || 'Operation failed';
         setError(errorMessage);
         setTimeout(() => setError(''), 3000);
     }, []);
